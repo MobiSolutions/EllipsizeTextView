@@ -7,15 +7,13 @@ import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.style.CharacterStyle;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class EllipsizeTextView extends TextView {
-    private static final String DEFAULT_ELLIPSIZE_TEXT = "...";
+public class EllipsizeTextView extends android.support.v7.widget.AppCompatTextView {
+    private static final String DEFAULT_ELLIPSIZE_TEXT = "…";
 
     private CharSequence mEllipsizeText;
     private CharSequence mOriginText;
@@ -97,7 +95,7 @@ public class EllipsizeTextView extends TextView {
         final int width = layout.getWidth() - getPaddingLeft() - getPaddingRight();
         final int maxLineCount = Math.max(1, computeMaxLineCount(layout));
         final int lastLineWidth = (int) layout.getLineWidth(maxLineCount - 1);
-        final int mLastCharacterIndex = layout.getLineEnd(maxLineCount - 1);
+        final int mLastCharacterIndex = layout.getLineVisibleEnd(maxLineCount - 1);
 
         final int suffixWidth = (int) (Layout.getDesiredWidth(mEllipsizeText, getPaint()) +
                 Layout.getDesiredWidth(restSuffixText, getPaint())) + 1;
